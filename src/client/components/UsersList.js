@@ -30,4 +30,10 @@ function mapStatetoProps(state) {
   return { users: state.users }
 }
 
+function loadData(store) {
+  console.log('I am trying to load some data')
+  return store.dispatch(fetchUsers())
+}
+
+export { loadData }
 export default connect(mapStatetoProps, { fetchUsers })(UsersList)
