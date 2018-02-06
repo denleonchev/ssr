@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Helmet } from 'react-helmet'
 
 import { fetchUsers } from '../actions'
 
@@ -16,9 +17,18 @@ class UsersListPage extends Component {
     })
   }
 
+  head() {
+    return (
+      <Helmet>
+        <title>{`${this.props.users.length} Users`}</title>
+      </Helmet>
+    )
+  }
+
   render() {
     return (
       <div>
+        {this.head()}
         Here is a big list of users
         {this.renderUsers()}
       </div>
@@ -31,7 +41,6 @@ function mapStatetoProps(state) {
 }
 
 function loadData(store) {
-  console.log('I am trying to load some data')
   return store.dispatch(fetchUsers())
 }
 

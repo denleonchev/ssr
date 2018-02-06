@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { fetchAdmins } from '../actions'
+import requireAuth from '../components/hocs/requireAuth'
 
 class AdminsListPage extends Component {
   componentDidMount() {
@@ -31,11 +32,10 @@ function mapStatetoProps(state) {
 }
 
 function loadData(store) {
-  console.log('I am trying to load some data')
   return store.dispatch(fetchAdmins())
 }
 
 export default {
   loadData,
-  component: connect(mapStatetoProps, { fetchAdmins })(AdminsListPage)
+  component: connect(mapStatetoProps, { fetchAdmins })(requireAuth(AdminsListPage))
 }
